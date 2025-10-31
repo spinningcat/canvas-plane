@@ -1,0 +1,1 @@
+rsync * -a  berat@cloud.mech.cx:/home/berat/www/plane
