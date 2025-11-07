@@ -26,7 +26,20 @@ const img = new Image();
 //img.src = "https://cloud.mech.cx/tmp/plane.png";
 //img.src = ""
 //const img2 = new Image();
-img.src = "./img/spaceship.png";
+img.src = "https://berat.cloud.mech.cx/plane/img/spaceship.png";
+
+const numStars = 100;
+const stars = [];
+
+
+for (let i = 0; i < numStars; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: 0.5 + Math.random(),
+    emoji: ["⭐", "🌟", "✨", "💫"]
+  });
+}
 
 canvas.addEventListener("keydown", (e) => {
   e.preventDefault();
@@ -60,6 +73,7 @@ function drawPlane() {
   ctx.drawImage(img, -img.width / 2, -img.height / 2);
 
   drawLight();
+
 
   ctx.restore();
   // ctx.drawImage(img2, -img.width / 2, -img.height / 2);
@@ -103,7 +117,7 @@ function update() {
   if (right) {
     angle += angleValue;
   }
-
+    drawStars();
   drawPlane();
 
   requestAnimationFrame(update);
@@ -133,6 +147,16 @@ function drawLine(x, y, x2, y2) {
   ctx.lineTo(x2, y2); // Draw a line to (150, 100)
   ctx.stroke(); // Render the path
 }
+
+function drawStars() {
+ let randomNumber = 0; ctx.clearRect(0,0,canvas.width,canvas.height);
+  for (const s of stars) {
+
+      ctx.fillText(s.emoji[0], s.x, s.y);
+  }
+
+}
+
 window.addEventListener('resize', function(event) {
     canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
